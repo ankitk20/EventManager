@@ -13,7 +13,13 @@ while($row = mysqli_fetch_array($result))
 <!DOCTYPE html>
 <html>
 <head>
-
+<style>
+.output{
+background-color : green;
+height : 150px;
+display : none;	
+}
+</style>
 <title>Filter Form</title>
 
  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
@@ -36,7 +42,8 @@ while($row = mysqli_fetch_array($result))
 
 </div>
 <br/>
-
+<div class="output">
+</div>
 
 </body>
 </html>
@@ -118,14 +125,17 @@ if(statename != '' || cityname != '')
 
 			if(jQuery.parseJSON(data).toString() == '0')
 			{
-				alert("Mahesh");
-				alert("No records Exists");
+				$(".output").html("Record Not exists").fadeIn(1000);
 				
 			} 
 			else
 			{
-				
-				alert(data);
+				var ar = jQuery.parseJSON(data).toString().split(',');
+				alert(ar[0]+" "+ar[1]+" "+ar.length);
+				for(i=0;i<ar.length;i++)
+				{
+					$(".output").append(ar[i]+"<br/>").fadeIn(1000);
+				}
 			}
 
 		}
