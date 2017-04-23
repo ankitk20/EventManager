@@ -104,21 +104,21 @@ if(statename != '' || cityname != '')
 {
 	$('#filterModal').modal('hide');
 
-	alert(statename +" "+cityname+" "+action);
 
 
 		$.ajax({
 		
 		url :"fetchevents.php",
-		method : "POST",
+		type : "POST",
 		
         data: {action:action,statename:statename, cityname:cityname},
 		
 		success: function(data)
 		{
-			
-			if(data == "0")
+
+			if(jQuery.parseJSON(data).toString() == '0')
 			{
+				alert("Mahesh");
 				alert("No records Exists");
 				
 			} 

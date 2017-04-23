@@ -14,7 +14,8 @@ if(isset($_POST["action"]))
 
 
   if(mysqli_num_rows($result) == 0)
-	  echo  "0";
+	echo "0";
+
   else
   {
 	while($row = mysqli_fetch_row($result))
