@@ -1,43 +1,4 @@
 
-<?php
-
-if(isset($_POST["search"]))
-{
- $connect = mysqli_connect("localhost", "root", "", "eventmanager");
- $output = array();
- 	 
-	$searchq =  $_POST['search'];
-	$searchq=preg_replace("#[^0-9a-z]#i","",$searchq);
-	
-	
-  
-  $query = "SELECT EventName FROM eventdetail WHERE EventName LIKE '%$searchq%'";
-  $result = mysqli_query($connect, $query);
-
-
-  if(mysqli_num_rows($result) == 0)
-	echo "No such Event";
-
-  else
-  {
-	while($row = mysqli_fetch_row($result))
-	{
-			  
-		$output[] = $row; 
-				 
-	}
-	
-	
-
-				$encoded = json_encode($output);
-				//header("Content-Type: application/json");
-				echo $encoded;
-	}
-}
-
-?>
-
-
 
 <!DOCTYPE HTML>
 <!--
@@ -67,7 +28,7 @@ if(isset($_POST["search"]))
 								<a href="index.html" class="logo">
 									<span class="symbol"><img src="images/logo.svg" alt="" /></span><span class="title">Events</span>
 								</a>
-								<form action="index.php" method="POST">
+								<form action="search.php" method="POST">
 								<input type="text" id="search" name="search" placeholder="Search" style="text-align:center;margin-left:15%;width:65%;float:left;"/>
 								<input type="submit" style="margin-left:2%">
 								</form>
