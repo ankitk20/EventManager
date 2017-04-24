@@ -1,0 +1,65 @@
+body{
+	font-family: Arial;
+	background-color: #F2F2F2;
+	margin: 0px;
+	padding: 0px;
+}
+header{
+	width: 100%;
+	height: 90px;
+	background-color: #7F8187;
+	color: white;
+	text-align: center;
+	border-bottom: 4px solid black;
+	border-top: 4px solid black;
+	margin-bottom: 5px;
+}
+header div{
+	margin: auto;
+	padding: 10px 0px;
+}
+@keyframes brdr{
+	0%{border-radius: 90px;}
+	50%{border-radius: 0px;}
+	100%{border-radius: 90px;}
+}
+#addForm{
+	width: 50%;
+	height: auto;
+	border: 1px solid black;
+	border-radius: 19px;
+	margin: auto;
+	padding: 70px 50px;
+	background-color: #D7D3D2;
+	animation-name: brdr;
+	animation-duration: 3s;
+	animation-iteration-count: infinite;
+	animation-delay: 1s;
+}
+input, option, textarea, select{
+	border: 1px solid #004CFF;
+	border-radius: 7px;
+	padding: 4px;
+}
+table{
+	width: 100%;
+}
+td, tr{
+	color: #FF0055;
+	padding: 10px;
+}
+#subButton{
+	width: 100%;
+	height: 30px;
+	background-color: #FF0055;
+	border-color: #FF0055;
+	color: white;
+}
+#subButton:hover{
+	opacity: 0.8;
+	cursor: pointer;
+}
+#submitSection{
+	margin: auto;
+	width: 20%;
+}

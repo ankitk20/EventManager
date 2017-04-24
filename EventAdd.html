@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Add an Event</title>
+	<link rel="stylesheet" type="text/css" href="css/AddEvent.css">
+</head>
+<body>
+	<header>
+	<div><h2>Add an Event</h2></div>
+		
+	</header>
+	<div id="addForm">
+		<form action="php/AddEvent.php" method="POST">
+			<table>
+				<tr>
+					<td align="right">Name of the Event:</td>
+					<td><input type="text" name="eventName" size="30" required="required" autofocus="autofocus"></td>
+				</tr>
+				<tr>
+					<td align="right">College Name:</td>
+					<td><select name="collegeName">
+						<option value="VESIT">VESIT</option>
+						<option value="TSEC" selected="selected">TSEC</option>
+						<option value="VJTI">VJTI</option>
+						<option value="KJS"> KJS</option>
+					</select></td>
+				</tr>
+				<tr>
+					<td align="right">Date:</td>
+					<td><input type="Date" name="dateOfEvent" required="required"></td>
+				</tr>
+				<tr>
+					<td align="right">Time:</td>
+					<td><input type="Time" name="timeOfEvent" required="required"></td>
+				</tr>
+				<tr>
+					<td align="right">Fees:</td>
+					<td><input type="Number" name="fees" min="0" placeholder="in rupees" required="required"></td>
+				</tr>
+				<tr>
+					<td align="right"> Brief Decription:</td>
+					<td><textarea rows="10" cols="30" name="description" placeholder="Some description..."></textarea></td>
+				</tr>
+			</table>
+			<div id="submitSection">
+				<input type="submit" name="submit" value="Submit"  id="subButton"> 
+			</div>
+		</form>
+	</div>
+</body>
+</html>
