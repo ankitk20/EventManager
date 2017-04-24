@@ -1,3 +1,14 @@
+<?php
+	//filter.php
+	$connect = mysqli_connect("localhost", "root", "", "eventmanager");
+	$state = '';
+	$query = "SELECT state FROM state_city GROUP BY state ORDER BY state ASC";
+	$result = mysqli_query($connect, $query);
+	while($row = mysqli_fetch_array($result))
+	{
+		 $state .= '<option value="'.$row["state"].'">'.$row["state"].'</option>';
+	}
+?>
 
 
 <!DOCTYPE HTML>
@@ -13,10 +24,14 @@
 		<meta name="viewport" content="width=device-width, initial-scale=1" />
 		<!--[if lte IE 8]><script src="assets/js/ie/html5shiv.js"></script><![endif]-->
 		<link rel="stylesheet" href="assets/css/main.css" />
+	  	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.0/jquery.min.js"></script>
 		<!--[if lte IE 9]><link rel="stylesheet" href="assets/css/ie9.css" /><![endif]-->
 		<!--[if lte IE 8]><link rel="stylesheet" href="assets/css/ie8.css" /><![endif]-->
 	</head>
 	<body>
+		<div class="output">
+			
+		</div>
 		<!-- Wrapper -->
 			<div id="wrapper">
 
@@ -28,10 +43,25 @@
 								<a href="index.html" class="logo">
 									<span class="symbol"><img src="images/logo.svg" alt="" /></span><span class="title">Events</span>
 								</a>
-								<form action="search.php" method="POST">
+								<form action="utsav.html" method="POST">
 								<input type="text" id="search" name="search" placeholder="Search" style="text-align:center;margin-left:15%;width:65%;float:left;"/>
 								<input type="submit" style="margin-left:2%">
 								</form>
+
+								<!-- Filter -->
+								<form action="">
+									<select name="state" id="state" class="action">
+									    <option value="">Select State</option>
+									   <?php echo $state; ?>
+									   </select>
+									   <br />
+									   <select name="city" id="city" class="form-control">
+									    <option value="">Select City</option>
+									   </select>
+									<br/>
+									<button type="button" name="filter_button" id="filter_button" class="btn btn-warning">Filter</button>
+								</form>
+
 							<!-- Nav -->
 								<nav>
 									<ul>
@@ -83,9 +113,9 @@
 										<img src="images/pic03.jpg" alt="" />
 									</span>
 									<a href="generic.html">
-										<h2>Feugiat</h2>
+										<h2>Bharat College</h2>
 										<div class="content">
-											<p>Sed nisl arcu euismod sit amet nisi lorem etiam dolor veroeros et feugiat.</p>
+											<p>Technostorm 2017</p>
 										</div>
 									</a>
 								</article>
@@ -94,9 +124,9 @@
 										<img src="images/pic04.jpg" alt="" />
 									</span>
 									<a href="generic.html">
-										<h2>Tempus</h2>
+										<h2>MES Pillai's Institute of technology</h2>
 										<div class="content">
-											<p>Sed nisl arcu euismod sit amet nisi lorem etiam dolor veroeros et feugiat.</p>
+											<p>Algeria 2017</p>
 										</div>
 									</a>
 								</article>
@@ -105,9 +135,9 @@
 										<img src="images/pic05.jpg" alt="" />
 									</span>
 									<a href="generic.html">
-										<h2>Aliquam</h2>
+										<h2>SIES College of Engineering</h2>
 										<div class="content">
-											<p>Sed nisl arcu euismod sit amet nisi lorem etiam dolor veroeros et feugiat.</p>
+											<p>Pixels 2017</p>
 										</div>
 									</a>
 								</article>
@@ -116,9 +146,9 @@
 										<img src="images/pic06.jpg" alt="" />
 									</span>
 									<a href="generic.html">
-										<h2>Veroeros</h2>
+										<h2>SRES College of engineering</h2>
 										<div class="content">
-											<p>Sed nisl arcu euismod sit amet nisi lorem etiam dolor veroeros et feugiat.</p>
+											<p>UTSAV TECHFEST 2k17</p>
 										</div>
 									</a>
 								</article>
@@ -127,9 +157,9 @@
 										<img src="images/pic07.jpg" alt="" />
 									</span>
 									<a href="generic.html">
-										<h2>Ipsum</h2>
+										<h2>YadavRao Tasgaokar </h2>
 										<div class="content">
-											<p>Sed nisl arcu euismod sit amet nisi lorem etiam dolor veroeros et feugiat.</p>
+											<p>National Level workshop.</p>
 										</div>
 									</a>
 								</article>
@@ -209,6 +239,83 @@
 			<script src="assets/js/util.js"></script>
 			<!--[if lte IE 8]><script src="assets/js/ie/respond.min.js"></script><![endif]-->
 			<script src="assets/js/main.js"></script>
+			<script>
+				$(document).ready(function(){
+				 $('.action').change(function(){
+				  if($(this).val() != '')
+				  {
+				   var action = $(this).attr("id");
+				   var query = $(this).val();
+				   var result = '';
+				   if(action == "state")
+				   {
+				    result = 'city';
+				   }
+				   
+				   $.ajax({
+				    url:"fetch.php",
+				    method:"POST",
+				    data:{action:action, query:query},
+				    success:function(data){
+				     $('#'+result).html(data);
+				    }
+				   })
+				  }
+				 });
+				 
+				 
+				$('#filter_button').click(function(){
+
+				 
+				//$('#filterModal').modal('hide');
+
+				var statename = $('#state').val();
+				var cityname = $('#city').val();
+				var action = $('#filter_button').attr("id");
+				if(statename != '' || cityname != '')
+
+
+				{
+				  // $('#filterModal').modal('hide');
+
+
+
+				    $.ajax({
+				    
+				    url :"fetchevents.php",
+				    type : "POST",
+				    
+				        data: {action:action,statename:statename, cityname:cityname},
+				    
+				    success: function(data)
+				    {
+
+				      if(jQuery.parseJSON(data).toString() == '0')
+				      {
+				        $(".output").html("Record Not exists").fadeIn(1000);
+				        
+				      } 
+				      else
+				      {
+				        var ar = jQuery.parseJSON(data).toString().split(',');
+				        // alert(ar[0]+" "+ar[1]+" "+ar.length);
+				         $(".output").html("");
+				        
+				        for(i=0;i<ar.length;i++)
+				        {
+				          $(".output").append(ar[i]+"<br/>").fadeIn(1000);
+				        }
+				      }
+
+				    }
+				     
+				    
+				  });
+				 
+				}    
+				 });
+				});
+			</script>
 
 	</body>
 </html>

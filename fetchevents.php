@@ -18,29 +18,19 @@ if(isset($_POST["action"]))
 
   else
   {
-	  while($row = mysqli_fetch_row($result))
+	while($row = mysqli_fetch_row($result))
 	{
-	  
-		$CollID = $row[0];
+			  
+		$output[] = $row; 
+				 
+	}
 	
 	
-		$query1 = "SELECT EventID FROM event WHERE CollegeID = '$CollID' ";
-		$result1 = mysqli_query($connect, $query1);
- 
-		while($row1 = mysqli_fetch_row($result1))
-		{
-		$Events[] = $row1[0]; 
-         
-		}
-  
-		}
- //}
-  
-		//$encoded = json_encode($output);
-		$encoded = json_encode($Events);
-		//header("Content-Type: application/json");
-		echo $encoded;
-}
+
+				$encoded = json_encode($output);
+				//header("Content-Type: application/json");
+				echo $encoded;
+	}
 }
 
 ?>
