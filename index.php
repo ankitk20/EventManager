@@ -96,7 +96,7 @@
 								<?php while($display = mysqli_fetch_array($res)): ?>
 								<article class="style<?php echo $i; ?>">
 									<span class="image">
-										<img src="images/pic01.jpg" alt="" />
+										<img src="images/pic0<?php echo $i;?>.jpg" alt="" />
 									</span>
 
 									<a href="praxis.html">
