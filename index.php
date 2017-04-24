@@ -8,6 +8,10 @@
 	{
 		 $state .= '<option value="'.$row["state"].'">'.$row["state"].'</option>';
 	}
+	$dis = "SELECT * FROM eventdetail";
+	$res = mysqli_query($connect, $dis);
+
+
 ?>
 
 
@@ -28,6 +32,11 @@
 		<!--[if lte IE 9]><link rel="stylesheet" href="assets/css/ie9.css" /><![endif]-->
 		<!--[if lte IE 8]><link rel="stylesheet" href="assets/css/ie8.css" /><![endif]-->
 	</head>
+	<style>
+		.title{
+			display: inline-block;
+		}
+	</style>
 	<body>
 		<div class="output">
 			
@@ -84,20 +93,22 @@
 				<!-- Main -->
 					<div id="main">
 						<div class="inner">
-
+							<?php while($display = mysqli_fetch_array($res)): ?>
 							<section class="tiles">
 								<article class="style1">
 									<span class="image">
 										<img src="images/pic01.jpg" alt="" />
 									</span>
+
 									<a href="praxis.html">
-										<h2>VESIT</h2>
+										<h2><?php echo $display['EventName']; ?></h2>
 										<div class="content">
-											<p>Praxis in September</p>
+											<p><?php echo $display['Description']; ?></p>
 										</div>
+										<?php endwhile ?>
 									</a>
 								</article>
-								<article class="style2">
+								<!--<article class="style2">
 									<span class="image">
 										<img src="images/pic02.jpg" alt="" />
 									</span>
@@ -217,19 +228,10 @@
 											<p>Sed nisl arcu euismod sit amet nisi lorem etiam dolor veroeros et feugiat.</p>
 										</div>
 									</a>
-								</article>
+								</article>-->
 							</section>
 						</div>
 					</div>
-
-				<!-- Footer -->
-					<footer id="footer">
-						<div class="inner">
-							<ul class="copyright">
-								<li>&copy; Untitled. All rights reserved</li><li>Design: <a href="http://html5up.net">HTML5 UP</a></li>
-							</ul>
-						</div>
-					</footer>
 
 			</div>
 
