@@ -2,11 +2,11 @@
 //fetch.php
 if(isset($_POST["action"]))
 {
- $connect = mysqli_connect("localhost", "root", "", "addressdetails");
+ $connect = mysqli_connect("localhost", "root", "root", "EventManager");
  $output = '';
  if($_POST["action"] == "state")
  {
-  $query = "SELECT city FROM state_city WHERE state = '".$_POST["query"]."' ";
+  $query = "SELECT distinct city FROM location WHERE state = '".$_POST["query"]."' ";
   $result = mysqli_query($connect, $query);
   $output .= '<option value="">Select city</option>';
   while($row = mysqli_fetch_array($result))

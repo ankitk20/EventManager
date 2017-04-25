@@ -4,8 +4,8 @@
 	$eventName = $date = $time = $description = $Fees = "";
 	$servername = "localhost";
 	$username = "root";
-	$password = "";
-	$dbname = "eventmanager";
+	$password = "root";
+	$dbname = "EventManager";
 
 	//retrieve inputs from the form
 	if ($_SERVER["REQUEST_METHOD"] == "POST") {
@@ -58,9 +58,11 @@
 	//insert into event
 	$sql = "INSERT INTO event(`CollegeID`,`EventID`) VALUES ('$college_id','$EID');";
 	if (mysqli_query($conn, $sql)) {
-	    echo "New record created successfully in event";
+	    // echo "New record created successfully in event";
+	    header("location:../index.php");
 	} else {
-	    echo "Error: " . $sql . "<br>" . mysqli_error($conn);
+	    header("location:../addEvent.html");
+	    // echo "Error: " . $sql . "<br>" . mysqli_error($conn);
 	}
 
 	mysqli_close($conn);

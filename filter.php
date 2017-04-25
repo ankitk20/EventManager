@@ -1,8 +1,8 @@
 <?php
 //filter.php
-$connect = mysqli_connect("localhost", "root", "", "addressdetails");
+$connect = mysqli_connect("localhost", "root", "root", "EventManager");
 $state = '';
-$query = "SELECT state FROM state_city GROUP BY state ORDER BY state ASC";
+$query = "SELECT state FROM location GROUP BY state ORDER BY state ASC";
 $result = mysqli_query($connect, $query);
 while($row = mysqli_fetch_array($result))
 {

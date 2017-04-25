@@ -1,8 +1,8 @@
 <?php
 	//filter.php
-	$connect = mysqli_connect("localhost", "root", "", "eventmanager");
+	$connect = mysqli_connect("localhost", "root", "root", "EventManager");
 	$state = '';
-	$query = "SELECT state FROM state_city GROUP BY state ORDER BY state ASC";
+	$query = "SELECT distinct state FROM location";
 	$result = mysqli_query($connect, $query);
 	while($row = mysqli_fetch_array($result))
 	{
@@ -14,11 +14,7 @@
 
 ?>
 <!DOCTYPE HTML>
-<!--
-	Phantom by HTML5 UP
-	html5up.net | @ajlkn
-	Free for personal and commercial use under the CCA 3.0 license (html5up.net/license)
--->
+
 <html>
 	<head>
 		<title>Event Manager</title>
@@ -93,24 +89,142 @@
 						<div class="inner">
 
 							<section class="tiles">
-								<?php while($display = mysqli_fetch_array($res)): ?>
-								<article class="style<?php echo $i; ?>">
+								<article class="style1">
 									<span class="image">
-										<img src="images/pic0<?php echo $i;?>.jpg" alt="" />
+										<img src="images/pic01.jpg" alt="" />
 									</span>
-
 									<a href="praxis.html">
-										<h2><?php echo $display['EventName']; $i+=1?></h2>
+										<h2>VESIT</h2>
 										<div class="content">
-											<p><?php echo $display['Description']; ?></p>
+											<p>Praxis in September</p>
 										</div>
-
 									</a>
 								</article>
-								<?php endwhile ?>
+								<article class="style2">
+									<span class="image">
+										<img src="images/pic02.jpg" alt="" />
+									</span>
+									<a href="utsav.html">
+										<h2>VESIT</h2>
+										<div class="content">
+											<p>Utsav in March</p>
+										</div>
+									</a>
+								</article>
+								<article class="style3">
+									<span class="image">
+										<img src="images/pic03.jpg" alt="" />
+									</span>
+									<a href="generic.html">
+										<h2>Bharat College</h2>
+										<div class="content">
+											<p>Technostorm 2017</p>
+										</div>
+									</a>
+								</article>
+								<article class="style4">
+									<span class="image">
+										<img src="images/pic04.jpg" alt="" />
+									</span>
+									<a href="generic.html">
+										<h2>MES Pillai's Institute of technology</h2>
+										<div class="content">
+											<p>Algeria 2017</p>
+										</div>
+									</a>
+								</article>
+								<article class="style5">
+									<span class="image">
+										<img src="images/pic05.jpg" alt="" />
+									</span>
+									<a href="generic.html">
+										<h2>SIES College of Engineering</h2>
+										<div class="content">
+											<p>Pixels 2017</p>
+										</div>
+									</a>
+								</article>
+								<article class="style6">
+									<span class="image">
+										<img src="images/pic06.jpg" alt="" />
+									</span>
+									<a href="generic.html">
+										<h2>SRES College of engineering</h2>
+										<div class="content">
+											<p>UTSAV TECHFEST 2k17</p>
+										</div>
+									</a>
+								</article>
+								<article class="style2">
+									<span class="image">
+										<img src="images/pic07.jpg" alt="" />
+									</span>
+									<a href="generic.html">
+										<h2>YadavRao Tasgaokar </h2>
+										<div class="content">
+											<p>National Level workshop.</p>
+										</div>
+									</a>
+								</article>
+								<article class="style3">
+									<span class="image">
+										<img src="images/pic08.jpg" alt="" />
+									</span>
+									<a href="generic.html">
+										<h2>Dolor</h2>
+										<div class="content">
+											<p>Sed nisl arcu euismod sit amet nisi lorem etiam dolor veroeros et feugiat.</p>
+										</div>
+									</a>
+								</article>
+								<article class="style1">
+									<span class="image">
+										<img src="images/pic09.jpg" alt="" />
+									</span>
+									<a href="generic.html">
+										<h2>Nullam</h2>
+										<div class="content">
+											<p>Sed nisl arcu euismod sit amet nisi lorem etiam dolor veroeros et feugiat.</p>
+										</div>
+									</a>
+								</article>
+								<article class="style5">
+									<span class="image">
+										<img src="images/pic10.jpg" alt="" />
+									</span>
+									<a href="generic.html">
+										<h2>Ultricies</h2>
+										<div class="content">
+											<p>Sed nisl arcu euismod sit amet nisi lorem etiam dolor veroeros et feugiat.</p>
+										</div>
+									</a>
+								</article>
+								<article class="style6">
+									<span class="image">
+										<img src="images/pic11.jpg" alt="" />
+									</span>
+									<a href="generic.html">
+										<h2>Dictum</h2>
+										<div class="content">
+											<p>Sed nisl arcu euismod sit amet nisi lorem etiam dolor veroeros et feugiat.</p>
+										</div>
+									</a>
+								</article>
+								<article class="style4">
+									<span class="image">
+										<img src="images/pic12.jpg" alt="" />
+									</span>
+									<a href="generic.html">
+										<h2>Pretium</h2>
+										<div class="content">
+											<p>Sed nisl arcu euismod sit amet nisi lorem etiam dolor veroeros et feugiat.</p>
+										</div>
+									</a>
+								</article>
 							</section>
 						</div>
 					</div>
+
 				<!-- Footer -->
 				<footer id="footer">
 					<div class="inner">
