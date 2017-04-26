@@ -2,7 +2,7 @@
 //fetch.php
 if(isset($_POST["action"]))
 {
- $connect = mysqli_connect("localhost", "root", "root", "EventManager");
+ $connect = mysqli_connect("localhost", "root", "", "EventManager");
  $output = '';
  if($_POST["action"] == "state")
  {

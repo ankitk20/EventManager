@@ -1,6 +1,6 @@
 <?php
 //filter.php
-$connect = mysqli_connect("localhost", "root", "root", "EventManager");
+$connect = mysqli_connect("localhost", "root", "", "EventManager");
 $state = '';
 $query = "SELECT state FROM location GROUP BY state ORDER BY state ASC";
 $result = mysqli_query($connect, $query);

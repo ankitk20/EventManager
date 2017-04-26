@@ -4,7 +4,7 @@
 	$eventName = $date = $time = $description = $Fees = "";
 	$servername = "localhost";
 	$username = "root";
-	$password = "root";
+	$password = "";
 	$dbname = "EventManager";
 
 	//retrieve inputs from the form
