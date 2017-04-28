@@ -3,7 +3,7 @@ if(isset($_POST["search"]))
 {
  $connect = mysqli_connect("localhost", "root", "", "eventmanager");
 	$searchq =  $_POST['search'];
-	$search = "SELECT EventName,Description FROM eventdetail WHERE EventName like '%$searchq%' or EventID in (select eventID from event where collegeID in (select collegeID from college where Acronym = '%$searchq%'))";
+	$search = "SELECT EventName,Description FROM eventdetail WHERE EventName like '%$searchq%' or EventID in (select eventID from event where collegeID in (select collegeID from college where Acronym like '%$searchq%'))";
 	$resulta = mysqli_query($connect, $search);
 	$i=1;
 }	
