@@ -43,7 +43,7 @@
 						<div class="inner">
 
 							<!-- Logo -->
-								<a href="index.html" class="logo">
+								<a href="index.php" class="logo">
 									<span class="symbol"><img src="images/logo.svg" alt="" /></span><span class="title">Events</span>
 								</a>
 								<form action="search.php" method="POST">
@@ -79,7 +79,7 @@
 					<nav id="menu">
 						<h2>Menu</h2>
 						<ul>
-							<li><a href="index.html">Home</a></li>
+							<li><a href="index.php">Home</a></li>
 							<li><a href="login.html">Login</a> </li>
 						</ul>
 					</nav>
