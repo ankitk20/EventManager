@@ -4,11 +4,18 @@
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<title>Add an Event</title>
 	<link rel="stylesheet" type="text/css" href="css/AddEvent.css">
+	<script type="text/javascript">
+			function loc(){
+				window.location.href = "index.php";
+			}
+		</script>
 </head>
 <body>
 	<header>
-	<div><h2>Add an Event</h2></div>
-		
+		<div><h2>Add an Event</h2>
+		<h5 onclick="loc()">Home</h5>
+		</div>
+
 	</header>
 	<div id="addForm">
 		<form action="php/AddEvent.php" method="POST">
@@ -23,7 +30,8 @@
 						<option value="VESIT">VESIT</option>
 						<option value="TSEC" selected="selected">TSEC</option>
 						<option value="VJTI">VJTI</option>
-						<option value="KJS"> KJS</option>
+						<option value="KJSCE">KJSCE</option>
+						<option value="BITSP">BITSP</option>
 					</select></td>
 				</tr>
 				<tr>

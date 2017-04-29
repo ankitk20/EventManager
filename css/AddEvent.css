@@ -16,7 +16,15 @@ header{
 }
 header div{
 	margin: auto;
-	padding: 10px 0px;
+	padding: 0px;
+}
+header div h5{
+	color: black;
+	text-align: center;
+	text-transform: uppercase;
+}
+header div h5:hover{
+	cursor: pointer;
 }
 @keyframes brdr{
 	0%{border-radius: 90px;}
@@ -62,4 +70,9 @@ td, tr{
 #submitSection{
 	margin: auto;
 	width: 20%;
+}
+.home{
+	color: white;
+	float: left;
+	font-weight: bolder;
 }

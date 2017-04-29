@@ -91,52 +91,28 @@ $(document).ready(function(){
  
  
 $('#filter_button').click(function(){
-
- 
-//$('#filterModal').modal('hide');
-
-var statename = $('#state').val();
-var cityname = $('#city').val();
-var action = $('#filter_button').attr("id");
-if(statename != '' || cityname != '')
-
-
-{
-	$('#filterModal').modal('hide');
-
-
-
-		$.ajax({
-		
-		url :"fetchevents.php",
-		type : "POST",
-		
-        data: {action:action,statename:statename, cityname:cityname},
-		
-		success: function(data)
-		{
-
-			if(jQuery.parseJSON(data).toString() == '0')
-			{
-				alert("Mahesh");
-				alert("No records Exists");
-				
-			} 
-			else
-			{
-				
-				alert(data);
-			}
-
-		}
-		 
-		
-	});
- 
-}	 
-	 
-	 
- });
+  var statename = $('#state').val();
+  var cityname = $('#city').val();
+  var action = $('#filter_button').attr("id");
+  if(statename != '' || cityname != ''){
+  		$.ajax({
+      		url :"fetchevents.php",
+      		type : "POST",
+          datatype: "JSON",
+      		data: {action:action,statename:statename, cityname:cityname},
+      		success: function(data){
+            console.log("success in fetchevents");
+      			if(jQuery.parseJSON(data).toString() == '0'){
+      				alert("Mahesh");
+      				alert("No records Exists");
+      			}else{
+      				alert(data);
+      			}
+      		}
+      		
+      });
+  }
+});
  
  
  

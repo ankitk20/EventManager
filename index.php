@@ -54,15 +54,15 @@
 								<!-- Filter -->
 								<form action="">
 									<select name="state" id="state" class="action">
-									    <option value="">Select State</option>
+								   		<option value="">Select State</option>
 									   <?php echo $state; ?>
-									   </select>
+								   </select>
 									   <br />
-									   <select name="city" id="city" class="form-control">
+								   <select name="city" id="city" class="form-control">
 									    <option value="">Select City</option>
-									   </select>
+								   </select>
 									<br/>
-									<button type="button" name="filter_button" id="filter_button" class="btn btn-warning">Filter</button>
+									<button type="button" id="filter_button" class="btn btn-warning">Filter</button>
 								</form>
 
 							<!-- Nav -->
@@ -88,24 +88,25 @@
 				<!-- Main -->
 					<div id="main">
 						<div class="inner">
+							<div id="filterloading">
+								<section class="tiles">
+									<?php while($display = mysqli_fetch_array($res)): ?>
+									<article class="style<?php echo $i; ?>">
+										<span class="image">
+											<img src="images/pic0<?php echo $i;?>.jpg" alt="" />
+										</span>
 
-							<section class="tiles">
-								<?php while($display = mysqli_fetch_array($res)): ?>
-								<article class="style<?php echo $i; ?>">
-									<span class="image">
-										<img src="images/pic0<?php echo $i;?>.jpg" alt="" />
-									</span>
+										<a href="praxis.html">
+											<h2><?php echo $display['EventName']; $i+=1?></h2>
+											<div class="content">
+												<p><?php echo $display['Description'];?></p>
+											</div>
 
-									<a href="praxis.html">
-										<h2><?php echo $display['EventName']; $i+=1?></h2>
-										<div class="content">
-											<p><?php echo $display['Description'];?></p>
-										</div>
-
-									</a>
-								</article>
-								<?php endwhile ?>
-							</section>
+										</a>
+									</article>
+									<?php endwhile ?>
+								</section>
+							</div>
 						</div>
 					</div>
 				<!-- Footer -->
@@ -149,7 +150,6 @@
 				  }
 				 });
 				 
-				 
 				$('#filter_button').click(function(){
 
 				 
@@ -168,38 +168,33 @@
 
 				    $.ajax({
 				    
-				    url :"fetchevents.php",
-				    type : "POST",
+				    url :"fetchcollege.php",
+				    method : "POST",
 				    
 				        data: {action:action,statename:statename, cityname:cityname},
 				    
-				    success: function(data)
-				    {
+				    success: function(response)
+					{
 
-				      if(jQuery.parseJSON(data).toString() == '0')
-				      {
-				        $(".output").html("Record Not exists").fadeIn(1000);
-				        
-				      } 
-				      else
-				      {
-				        var ar = jQuery.parseJSON(data).toString().split(',');
-				        // alert(ar[0]+" "+ar[1]+" "+ar.length);
-				         $(".output").html("");
-				        
-				        for(i=0;i<ar.length;i++)
-				        {
-				          $(".output").append(ar[i]+"<br/>").fadeIn(1000);
-				        }
-				      }
+						if(response=='No')
+						{
+							//$(".output").html("Record Not exists").fadeIn(1000);
+							alert("12345");
+						} 
+						else
+						{ 
+							alert("Mahesh");
+							$('#filterloading').html(response);							
+						}
 
-				    }
+					}
 				     
 				    
 				  });
 				 
 				}    
 				 });
+
 				});
 			</script>
 
