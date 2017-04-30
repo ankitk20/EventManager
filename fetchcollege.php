@@ -6,7 +6,7 @@
 if(isset($_POST["action"]))
 {
 	$i = 0;
- $connect = mysqli_connect("localhost", "root", "", "eventmanager");
+ $connect = mysqli_connect("localhost", "root", "root", "eventmanager");
  $output = '';
  $EventDetails = array();
  

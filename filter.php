@@ -1,6 +1,6 @@
 <?php
 //filter.php
-$connect = mysqli_connect("localhost", "root", "", "EventManager");
+$connect = mysqli_connect("localhost", "root", "root", "eventmanager");
 $state = '';
 $query = "SELECT state FROM location GROUP BY state ORDER BY state ASC";
 $result = mysqli_query($connect, $query);
@@ -66,72 +66,51 @@ while($row = mysqli_fetch_array($result))
 </div>
 </div>	
 <script>
-$(document).ready(function(){
- $('.action').change(function(){
-  if($(this).val() != '')
-  {
-   var action = $(this).attr("id");
-   var query = $(this).val();
-   var result = '';
-   if(action == "state")
-   {
-    result = 'city';
-   }
-   
-   $.ajax({
-    url:"fetch.php",
-    method:"POST",
-    data:{action:action, query:query},
-    success:function(data){
-     $('#'+result).html(data);
+  $(document).ready(function(){
+   $('.action').change(function(){
+    if($(this).val() != '')
+    {
+     var action = $(this).attr("id");
+     var query = $(this).val();
+     var result = '';
+     if(action == "state")
+     {
+      result = 'city';
+     }
+     
+     $.ajax({
+      url:"fetch.php",
+      method:"POST",
+      data:{action:action, query:query},
+      success:function(data){
+       $('#'+result).html(data);
+      }
+     })
     }
-   })
-  }
- });
- 
- 
-$('#filter_button').click(function(){
-  var statename = $('#state').val();
-  var cityname = $('#city').val();
-  var action = $('#filter_button').attr("id");
-  if(statename != '' || cityname != ''){
-  		$.ajax({
-      		url :"fetchevents.php",
-      		type : "POST",
-          datatype: "JSON",
-      		data: {action:action,statename:statename, cityname:cityname},
-      		success: function(data){
-            console.log("success in fetchevents");
-      			if(jQuery.parseJSON(data).toString() == '0'){
-      				alert("Mahesh");
-      				alert("No records Exists");
-      			}else{
-      				alert(data);
-      			}
-      		}
-      		
-      });
-  }
+   });
+   
+   
+  $('#filter_button').click(function(){
+    var statename = $('#state').val();
+    var cityname = $('#city').val();
+    var action = $('#filter_button').attr("id");
+    if(statename != '' || cityname != ''){
+    		$.ajax({
+        		url :"fetchevents.php",
+        		type : "POST",
+            datatype: "JSON",
+        		data: {action:action,statename:statename, cityname:cityname},
+        		success: function(data){
+              console.log("success in fetchevents");
+        			if(jQuery.parseJSON(data).toString() == '0'){
+        				alert("No records Exists");
+        			}else{
+        				alert(data);
+        			}
+        		}
+        		
+        });
+    }
+  });
 });
- 
- 
- 
- 
- 
-});
-
-
-
-
 </script>
-
-
- 
- 
- 
-
-
-
-
-
-

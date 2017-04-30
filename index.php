@@ -1,6 +1,5 @@
 <?php
-	//filter.php
-	$connect = mysqli_connect("localhost", "root", "", "EventManager");
+	$connect = mysqli_connect("localhost", "root", "root", "eventmanager");
 	$state = '';
 	$query = "SELECT distinct state FROM location";
 	$result = mysqli_query($connect, $query);
@@ -20,11 +19,8 @@
 		<title>Event Manager</title>
 		<meta charset="utf-8" />
 		<meta name="viewport" content="width=device-width, initial-scale=1" />
-		<!--[if lte IE 8]><script src="assets/js/ie/html5shiv.js"></script><![endif]-->
 		<link rel="stylesheet" href="assets/css/main.css" />
 	  	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.0/jquery.min.js"></script>
-		<!--[if lte IE 9]><link rel="stylesheet" href="assets/css/ie9.css" /><![endif]-->
-		<!--[if lte IE 8]><link rel="stylesheet" href="assets/css/ie8.css" /><![endif]-->
 	</head>
 	<style>
 		.title{
@@ -96,7 +92,11 @@
 											<img src="images/pic0<?php echo $i;?>.jpg" alt="" />
 										</span>
 
-										<a href="praxis.html">
+										<a href="generic.php">
+											<form action="./generic.php" method="get">
+												<input type="hidden" name="collegeid" value=<?php echo $display['collegeid'] ?>>
+												<button type="submit">View</button>
+											</form>
 											<h2><?php echo $display['EventName']; $i+=1?></h2>
 											<div class="content">
 												<p><?php echo $display['Description'];?></p>
@@ -158,13 +158,7 @@
 				var statename = $('#state').val();
 				var cityname = $('#city').val();
 				var action = $('#filter_button').attr("id");
-				if(statename != '' || cityname != '')
-
-
-				{
-				  // $('#filterModal').modal('hide');
-
-
+				if(statename != '' || cityname != ''){
 
 				    $.ajax({
 				    
@@ -173,17 +167,13 @@
 				    
 				        data: {action:action,statename:statename, cityname:cityname},
 				    
-				    success: function(response)
-					{
+				    success: function(response){
 
-						if(response=='No')
-						{
+						if(response=='No'){
 							//$(".output").html("Record Not exists").fadeIn(1000);
-							alert("12345");
+							alert("Something went wrong with filtering");
 						} 
-						else
-						{ 
-							alert("Mahesh");
+						else{ 
 							$('#filterloading').html(response);							
 						}
 

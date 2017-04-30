@@ -1,7 +1,7 @@
 <?php
 	//fetch.php
 	if(isset($_POST["action"])){
-		$connect = mysqli_connect("localhost", "root", "", "EventManager");
+		$connect = mysqli_connect("localhost", "root", "root", "eventmanager");
 		$output = array();
 		 	 
 		$state =  $_POST['statename'];
